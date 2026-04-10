@@ -1,9 +1,9 @@
 import requests
 
-def consumir_api():
+def consumir_api(cep):
     
     try:
-        link = 'https://cep.awesomeapi.com.br/json/01001000'
+        link = f'https://cep.awesomeapi.com.br/json/{cep}'
 
         resposta = requests.get(link)
         
@@ -19,4 +19,5 @@ def consumir_api():
 
 
 if __name__=='__main__':
-    consumir_api()
+    cep = int(input('Informe o CEP, apenas números, ex: 01001000: '))
+    consumir_api(cep)
