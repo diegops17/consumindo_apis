@@ -3,7 +3,8 @@ import requests
 def consumir_api(cep):
     
     try:
-        link = f'https://cep.awesomeapi.com.br/json/{cep}'
+        #link = f'https://cep.awesomeapi.com.br/json/{cep}'
+        link = f'https://brasilapi.com.br/api/cep/v1/{cep}'
 
         resposta = requests.get(link)
         
