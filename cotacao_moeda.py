@@ -11,11 +11,11 @@ hoje = datetime.now().date() - timedelta(days=1) #Parz esse ex tive que usar ass
 
 def consumir_api_cotacao(moeda: str):
     data = hoje
+
     try:
         link = f'https://brasilapi.com.br/api/cambio/v1/cotacao/{moeda}/{data}'
 
         resposta = requests.get(link)
-        
         if resposta.status_code == 200:
             dados = resposta.json()
             #print(dados)
@@ -35,14 +35,16 @@ def consumir_api_cotacao(moeda: str):
 
 
 def converter_real_dolar(real, moeda):
+    print(real, moeda)
     cotacao = consumir_api_cotacao(moeda)
+    print(cotacao)
     valor_convertido = real / cotacao
     
     return valor_convertido, cotacao
 
 
 def solicitar_dados():
-    real = float(input('Informe quanto reais deseja converter R$ '))
+    real = (input('Informe quanto reais deseja converter R$ '))
     moeda = str(input('Informe a moeda para conversão [USD, EUR, JPY]: ')).strip().upper()
 
     valor_convertido, cotacao = converter_real_dolar(real, moeda)
@@ -50,7 +52,6 @@ def solicitar_dados():
 
 if __name__=='__main__': 
     #cotacao = consumir_api_cotacao(moeda, hoje)
-
     resultado = solicitar_dados()
     
     print(f'''
